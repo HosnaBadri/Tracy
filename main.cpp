@@ -1,5 +1,8 @@
 #include <iostream>
 
+#include "vec3.h"
+#include "color.h"
+
 int image_height = 256;
 int image_width = 256;
 
@@ -12,15 +15,8 @@ int main(){
         std::clog<<"\rScanlines remaining: "<< (image_height - y)<<" "<< std::flush;
         for(int x = 0; x < image_width; x++){
 
-            auto r = double(y) / image_height;
-            auto g = double(x) / image_width;
-
-            int ri = 255 *r;
-            int gi = 0;
-            int bi = 255 *g;
-
-            std::cout<<ri<<" "<<gi<<" "<<bi<<"\n";
-
+            color pixel = {double(y) / image_height, double(x) / image_width, 0.0};
+            write_color(std::cout, pixel);
         }
     }
     std::clog << "\rDone.                  \n";
